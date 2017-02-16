@@ -1,6 +1,13 @@
 # RusPrice
 
 Гем позволяет преобразовать число, представляющее некую цену в строку вида "5 рублей 10 копеек". Форма слов "рубль" и "копейка" будет изменена согласно правилам русского языка в зависимости от данного числа.
+Модуль с методом "rusprice" добавляется в класс Numeric и может быть вызван на любом числе (см. "Примеры использования").
+####Примечание:
+ - Отрицательное число будет преобразовано в положительное;
+ - Дробная часть будет округлена до двух знаков (используется метод "Float#round");
+ - Числа 0 и 0.0 преобразуются к строке "0 рублей";
+ - Число 0.001 преобразуются к строке "0 рублей";
+ - Число 0.005 преобразуются к строке "1 копейка".
 
 ## Установка
 
@@ -18,25 +25,18 @@ gem 'rusprice'
 
     $ gem install rusprice
 
-### Примеры использования
+## Примеры использования
 ```ruby
-price = RusPrice::Converter.new 123.45
-price.russify
+123.45.rusprice
 # "123 рубля 45 копеек"
 
-price = RusPrice::Converter.new 98
-price.russify
+98.rusprice
 # "98 рублей"
 
-price = RusPrice::Converter.new 0.72
-price.russify
+0.72.rusprice
 # "72 копейки"
 ```
 
-## Contributing
+## Лицензия
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/klekot/rusprice. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+Этот гем распространяется по [лицензии MIT](http://opensource.org/licenses/MIT).
