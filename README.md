@@ -1,39 +1,41 @@
 # RusPrice
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rusprice`. To experiment with that code, run `bin/console` for an interactive prompt.
+Гем позволяет преобразовать число, представляющее некую цену в строку вида "5 рублей 10 копеек". Форма слов "рубль" и "копейка" будет изменена согласно правилам русского языка в зависимости от данного числа.
 
-TODO: Delete this and the text above, and describe your gem
+## Установка
 
-## Installation
-
-Add this line to your application's Gemfile:
+Добавьте следующую строку в Gemfile:
 
 ```ruby
 gem 'rusprice'
 ```
 
-And then execute:
+Потом выполните команду:
 
     $ bundle
 
-Or install it yourself as:
+Вы также можете установить rusprice в свою систему:
 
     $ gem install rusprice
 
-## Usage
+### Примеры использования
+```ruby
+price = RusPrice::Converter.new 123.45
+price.russify
+# "123 рубля 45 копеек"
 
-TODO: Write usage instructions here
+price = RusPrice::Converter.new 98
+price.russify
+# "98 рублей"
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+price = RusPrice::Converter.new 0.72
+price.russify
+# "72 копейки"
+    ```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Igor Klekotnev/rusprice. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/klekot/rusprice. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
