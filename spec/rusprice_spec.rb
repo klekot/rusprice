@@ -9,6 +9,10 @@ RSpec.describe RusPrice do
     expect(-1.rusprice).to eq("1 рубль")
   end
 
+  it "fix problem 999" do
+    expect(0.999.rusprice).to eq("1 рубль")
+  end
+
   #what's about 'рубли'?
   it "when last number is 1 then 'рубль'" do
     expect(1.rusprice).to eq("1 рубль")

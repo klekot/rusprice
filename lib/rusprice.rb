@@ -8,8 +8,13 @@ module RusPrice
     self_value = self
     self_value = self * (-1) if self.negative?
     dec_part = (self_value % 1).round(2)
-    rub_part = (self_value - (self_value % 1)).to_i
-    kop_part = (dec_part * 100).to_i
+    if (dec_part == 1.0)
+      rub_part = (self_value - (self_value % 1)).to_i + 1
+      kop_part = 0
+    else
+      rub_part = (self_value - (self_value % 1)).to_i
+      kop_part = (dec_part * 100).to_i
+    end
     rub_case = cases rub_part, RUBLE
     kop_case = cases kop_part, PENNY
     unless kop_part == 0
