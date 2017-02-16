@@ -5,6 +5,11 @@ RSpec.describe RusPrice do
     expect(RusPrice::VERSION).not_to be nil
   end
 
+  it "inverts negative price to positive one" do
+    price = RusPrice::Converter.new -1
+    expect(price.russify).to eq("1 рубль")
+  end
+
   #what's about 'рубли'?
   it "when last number is 1 then 'рубль'" do
     number = 1

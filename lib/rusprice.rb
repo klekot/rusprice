@@ -8,10 +8,16 @@ module RusPrice
     attr_accessor :price
 
     def initialize(price = 0)
-    @price = price
+      begin
+        raise ArgumentError, "Only Numeric accepted!" unless price.is_a? Numeric
+        @price = price
+      rescue => exception
+        puts exception.message
+      end
     end
 
     def russify()
+      @price = @price * (-1) if @price < 0
       dec_part = (@price % 1).round(2)
       rub_part = (@price - (@price % 1)).to_i
       kop_part = (dec_part * 100).to_i
