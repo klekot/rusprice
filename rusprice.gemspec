@@ -5,7 +5,7 @@ require 'rusprice/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "rusprice"
-  spec.version       = Rusprice::VERSION
+  spec.version       = RusPrice::VERSION
   spec.authors       = ["Igor Klekotnev"]
   spec.email         = ["klekotnev@gmail.com"]
 
