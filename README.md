@@ -31,7 +31,7 @@ price.russify
 price = RusPrice::Converter.new 0.72
 price.russify
 # "72 копейки"
-    ```
+```
 
 ## Contributing
 
