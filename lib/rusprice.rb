@@ -32,21 +32,21 @@ module RusPrice
 
   def cases (number, kind)
     if kind == 'рубль'
-      if (number % 100 == 11) || (number % 100 == 12) || (number % 100 == 13) || (number % 100 == 14)
+      if [11, 12, 13, 14].include?(number % 100)
         'рублей'
       elsif (number % 10 == 1)
         'рубль'
-      elsif (number % 10 == 2) || (number % 10 == 3) || (number % 10 == 4)
+      elsif [2, 3, 4].include?(number % 10)
         'рубля'
       else
         'рублей'
       end
     elsif kind == 'копейка'
-      if (number == 11) || (number == 12) || (number == 13) || (number == 14)
+      if [11, 12, 13, 14].include?(number % 100)
         'копеек'
       elsif (number % 10 == 1)
         'копейка'
-      elsif (number % 10 == 2) || (number % 10 == 3) || (number % 10 == 4)
+      elsif [2, 3, 4].include?(number % 10)
         'копейки'
       else
         'копеек'
