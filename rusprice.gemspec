@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Igor Klekotnev"]
   spec.email         = ["klekotnev@gmail.com"]
 
-  spec.summary       = "Gem converts word endings of russian words ruble and kopeika depending of price number"
-  spec.description   = "You could use float or integer prices. It works only for russian language."
+  spec.summary       = "Gem allows to convert number into string like 'X рублей Y копеек' accordingly russian language rules."
+  spec.description   = "Gem allows to convert number into string like 'X рублей Y копеек' accordingly russian language rules."
   spec.homepage      = "https://github.com/klekot/rusprice"
   spec.license       = "MIT"
 
