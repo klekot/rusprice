@@ -1,5 +1,5 @@
 # RusPrice
-[![Gem Version](https://badge.fury.io/rb/rusprice.svg)](https://badge.fury.io/rb/rusprice)
+[![Gem Version](https://badge.fury.io/rb/rusprice.svg)](https://badge.fury.io/rb/rusprice) [![Build Status](https://travis-ci.org/klekot/rusprice.svg?branch=master)](https://travis-ci.org/klekot/rusprice)
 
 **ВНИМАНИЕ!!!** Те, кто успел заюзать [версию 0.1.0](https://github.com/klekot/rusprice/tree/v0.1.0) обратите внимание, что в дальнейших версиях гема изменилась логика включения в проект.
 Начиная с [версии 0.2.0](https://github.com/klekot/rusprice/tree/v.0.2.0) не надо создавать экземпляры **RusPrice::Converter**, достаточно вызвать метод "rusprice" на любом числе в вашем коде.
