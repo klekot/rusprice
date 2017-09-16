@@ -28,32 +28,24 @@ module RusPrice
 
   private
 
-  def cases(number, kind)
-    if kind == 'рубль'
-      if [11, 12, 13, 14].include?(number % 100)
-        'рублей'
-      elsif number % 10 == 1
-        'рубль'
-      elsif [2, 3, 4].include?(number % 10)
-        'рубля'
-      else
-        'рублей'
-      end
-    elsif kind == 'копейка'
-      if [11, 12, 13, 14].include?(number % 100)
-        'копеек'
-      elsif number % 10 == 1
-        'копейка'
-      elsif [2, 3, 4].include?(number % 10)
-        'копейки'
-      else
-        'копеек'
+  def cases number, kind
+    if kind == 'рубль' || 'копейка'
+      case
+        when [11, 12, 13, 14].include?(number % 100)
+          kind == 'рубль' ? 'рублей' : 'копеек'
+        when number % 10 == 1
+          kind == 'рубль' ? 'рубль' : 'копейка'
+        when [2, 3, 4].include?(number % 10)
+          kind == 'рубль' ? 'рубля' : 'копейки'
+        else
+          kind == 'рубль' ? 'рублей' : 'копеек'
       end
     else
       ''
     end
   end
 end
+
 
 class Numeric
   include RusPrice
