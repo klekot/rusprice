@@ -10,6 +10,7 @@ RSpec.describe RusPrice do
     it{ expect(-1.rp).to eq('1 рубль') }
     it{ expect(-1001.ruspace).to eq('1 001 рубль') }
     it{ expect(-1001.01.rushort).to eq('1 001 руб. 1 коп.') }
+    it{ expect(-1001.01.rpss).to eq('1 001 руб. 1 коп.') }
   end
 
   context 'fix problem 999' do
@@ -17,6 +18,7 @@ RSpec.describe RusPrice do
     it{ expect(0.999.rp).to eq('1 рубль') }
     it{ expect(9999.999.ruspace).to eq('10 000 рублей') }
     it{ expect(9999.999.rushort).to eq('10 000 руб.') }
+    it{ expect(9999.999.rpss).to eq('10 000 руб.') }
   end
 
   # what's about 'рубли'?
@@ -25,6 +27,7 @@ RSpec.describe RusPrice do
     it{ expect(1.rp).to eq('1 рубль') }
     it{ expect(1001.ruspace).to eq('1 001 рубль') }
     it{ expect(1001.rushort).to eq('1 001 руб.') }
+    it{ expect(1001.rpss).to eq('1 001 руб.') }
   end
 
   context 'when last number is 2 or 3 or 4 then \'рубля\'' do
@@ -33,6 +36,7 @@ RSpec.describe RusPrice do
       it{ expect(number.rp).to eq(number.to_s + ' рубля') }
       it{ expect((1000 + number).ruspace).to eq('1 00' + number.to_s + ' рубля') }
       it{ expect((1000 + number).rushort).to eq('1 00' + number.to_s + ' руб.') }
+      it{ expect((1000 + number).rpss).to eq('1 00' + number.to_s + ' руб.') }
     end
   end
 
@@ -44,6 +48,7 @@ RSpec.describe RusPrice do
       it{ expect(number.rp).to eq(number.to_s + ' рублей') }
       it{ expect((prefix_num + number).ruspace).to eq(prefix + number.to_s + ' рублей') }
       it{ expect((prefix_num + number).rushort).to eq(prefix + number.to_s + ' руб.') }
+      it{ expect((prefix_num + number).rpss).to eq(prefix + number.to_s + ' руб.') }
     end
   end
 
@@ -53,6 +58,7 @@ RSpec.describe RusPrice do
     it{ expect(0.01.rp).to eq('1 копейка') }
     it{ expect(0.01.ruspace).to eq('1 копейка') }
     it{ expect(0.01.rushort).to eq('1 коп.') }
+    it{ expect(0.01.rpss).to eq('1 коп.') }
   end
 
   context 'when last number is 2 or 3 or 4 then \'копейки\'' do
@@ -61,6 +67,7 @@ RSpec.describe RusPrice do
       it{ expect((number / 100.0).rp).to eq(number.to_s + ' копейки') }
       it{ expect((number / 100.0).ruspace).to eq(number.to_s + ' копейки') }
       it{ expect((number / 100.0).rushort).to eq(number.to_s + ' коп.') }
+      it{ expect((number / 100.0).rpss).to eq(number.to_s + ' коп.') }
     end
   end
 
@@ -70,6 +77,7 @@ RSpec.describe RusPrice do
       it{ expect((number / 100.0).rp).to eq(number.to_s + ' копеек') }
       it{ expect((number / 100.0).ruspace).to eq(number.to_s + ' копеек') }
       it{ expect((number / 100.0).rushort).to eq(number.to_s + ' коп.') }
+      it{ expect((number / 100.0).rpss).to eq(number.to_s + ' коп.') }
     end
   end
 
@@ -79,6 +87,7 @@ RSpec.describe RusPrice do
       it{ expect((number / 10.0).rp).to eq(number.to_s + '0 копеек') }
       it{ expect((number / 10.0).ruspace).to eq(number.to_s + '0 копеек') }
       it{ expect((number / 10.0).rushort).to eq(number.to_s + '0 коп.') }
+      it{ expect((number / 10.0).rpss).to eq(number.to_s + '0 коп.') }
     end
   end
 

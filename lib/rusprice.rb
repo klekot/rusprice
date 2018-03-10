@@ -5,8 +5,7 @@ module RusPrice
   PENNY = 'копейка'.freeze
 
   def rusprice (sep = '', short = false)
-    self_value = self
-    self_value = self * -1 if negative?
+    self_value = self >= 0 ? self : self * -1
     dec_part = (self_value % 1).round(2)
     if dec_part == 1.0
       rub_part = (self_value - (self_value % 1)).to_i + 1
@@ -39,6 +38,11 @@ module RusPrice
   # "rusprice" with "руб." and "коп." by default
   def rushort (sep = ' ')
     self.rusprice sep, true
+  end
+
+  # "rusprice" with whitespaces and "руб." and "коп." by default
+  def rpss
+    self.rusprice ' ', true
   end
 
   private
