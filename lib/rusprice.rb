@@ -27,40 +27,35 @@ module RusPrice
 
   # Just shortcut for method "rusprice"
   def rp (sep = '', short = false)
-    self.rusprice sep, short
+    rusprice sep, short
   end
 
   # "rusprice" with whitespaces by default
   def ruspace (short = false)
-    self.rusprice ' ', short
+    rusprice ' ', short
   end
 
   # "rusprice" with "руб." and "коп." by default
   def rushort (sep = ' ')
-    self.rusprice sep, true
+    rusprice sep, true
   end
 
   # "rusprice" with whitespaces and "руб." and "коп." by default
   def rpss
-    self.rusprice ' ', true
+    rusprice ' ', true
   end
 
   private
 
-  def cases number, kind
-    if kind == 'рубль' || 'копейка'
-      case
-        when [11, 12, 13, 14].include?(number % 100)
-          kind == 'рубль' ? 'рублей' : 'копеек'
-        when number % 10 == 1
-          kind == 'рубль' ? 'рубль' : 'копейка'
-        when [2, 3, 4].include?(number % 10)
-          kind == 'рубль' ? 'рубля' : 'копейки'
-        else
-          kind == 'рубль' ? 'рублей' : 'копеек'
-      end
+  def cases (number, kind)
+    if [11, 12, 13, 14].include?(number % 100)
+      kind == 'рубль' ? 'рублей' : 'копеек'
+    elsif number % 10 == 1
+      kind == 'рубль' ? 'рубль' : 'копейка'
+    elsif [2, 3, 4].include?(number % 10)
+      kind == 'рубль' ? 'рубля' : 'копейки'
     else
-      ''
+      kind == 'рубль' ? 'рублей' : 'копеек'
     end
   end
 
