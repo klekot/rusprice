@@ -4,7 +4,7 @@ module RusPrice
   RUBLE = 'рубль'.freeze
   PENNY = 'копейка'.freeze
 
-  def rusprice
+  def rusprice (sep = '', short = false)
     self_value = self
     self_value = self * -1 if negative?
     dec_part = (self_value % 1).round(2)
@@ -15,15 +15,30 @@ module RusPrice
       rub_part = (self_value - (self_value % 1)).to_i
       kop_part = (dec_part * 100).to_i
     end
-    rub_case = cases rub_part, RUBLE
-    kop_case = cases kop_part, PENNY
-    output = if kop_part.zero?
-               "#{rub_part} #{rub_case}"
-             elsif rub_part.zero?
-               "#{kop_part} #{kop_case}"
-             else
-               "#{rub_part} #{rub_case} #{kop_part} #{kop_case}"
-             end
+    rub_case = short ? 'руб.' : cases(rub_part, RUBLE)
+    kop_case = short ? 'коп.' : cases(kop_part, PENNY)
+    if kop_part.zero?
+      "#{spaces_on rub_part, sep} #{rub_case}"
+    elsif rub_part.zero?
+      "#{kop_part} #{kop_case}"
+    else
+      "#{spaces_on rub_part, sep} #{rub_case} #{kop_part} #{kop_case}"
+    end
+  end
+
+  # Just shortcut for method "rusprice"
+  def rp (sep = '', short = false)
+    self.rusprice sep, short
+  end
+
+  # "rusprice" with whitespaces by default
+  def ruspace (short = false)
+    self.rusprice ' ', short
+  end
+
+  # "rusprice" with "руб." and "коп." by default
+  def rushort (sep = ' ')
+    self.rusprice sep, true
   end
 
   private
@@ -42,6 +57,12 @@ module RusPrice
       end
     else
       ''
+    end
+  end
+
+  def spaces_on(number, sep)
+    number.to_s.tap do |s|
+      :go while s.gsub!(/^([^.]*)(\d)(?=(\d{3})+)/, "\\1\\2#{sep}")
     end
   end
 end
